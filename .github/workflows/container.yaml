@@ -41,6 +41,8 @@ jobs:
       - name: Build and push image
         uses: docker/build-push-action@v6
         with:
+          sbom: true
+          provenance: mode=max
           context: .
           file: Dockerfile
           cache-from: type=gha
