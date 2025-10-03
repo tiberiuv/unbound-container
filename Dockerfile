@@ -1,8 +1,9 @@
 ARG ARCH=
+ARG UNBOUND_VERSION="1.24.0"
 FROM ${ARCH}alpine AS build
 ARG PUID=1000
 ARG GUID=1001
-ARG UNBOUND_VERSION="1.24.0"
+ARG UNBOUND_VERSION
 
 RUN apk add -q --no-cache  \
     wget \
