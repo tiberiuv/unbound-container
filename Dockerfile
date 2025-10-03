@@ -27,7 +27,31 @@ RUN wget -nv https://nlnetlabs.nl/downloads/unbound/unbound-latest.tar.gz \
 
 WORKDIR /unbound_build/unbound-$UNBOUND_VERSION
 
-RUN ./configure --with-libhiredis --disable-gtk-doc --disable-gtk-doc-html --disable-doc --disable-docs --disable-documentation --with-xmlto=no --with-fop=no --disable-dependency-tracking --enable-ipv6 --disable-nls --disable-static --disable-rpath --disable-debug --with-conf-file=/etc/unbound/unbound.conf --with-pidfile=/var/run/unbound.pid --with-rootkey-file=/etc/unbound/root.key --enable-tfo-server --with-ssl --enable-tfo-client --disable-flto --with-run-dir=/var/run/unbound --enable-fully-static --enable-static
+RUN ./configure \
+    --disable-gtk-doc \
+    --disable-gtk-doc-html \
+    --disable-doc \
+    --disable-docs \
+    --disable-documentation \
+    --disable-nls \
+    --disable-static \
+    --disable-rpath \
+    --disable-debug \
+    --disable-dependency-tracking \
+    --disable-flto \
+    --with-xmlto=no \
+    --with-fop=no \
+    --with-conf-file=/etc/unbound/unbound.conf \
+    --with-pidfile=/var/run/unbound.pid \
+    --with-rootkey-file=/etc/unbound/root.key \
+    --with-run-dir=/var/run/unbound \
+    --with-ssl \
+    --enable-ipv6 \
+    --enable-tfo-server \
+    --enable-tfo-client \
+    --enable-fully-static \
+    --enable-static \
+    --with-libhiredis
 
 RUN make -j \
     && make install -j \
