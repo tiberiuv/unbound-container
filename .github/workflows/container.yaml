@@ -11,8 +11,9 @@ jobs:
   build_and_push:
     strategy:
       matrix:
-        # renovate: datasource=github-releases packageName=NLnetLabs/unbound
-        unbound_version: [1.24.0]
+        unbound_version: 
+          # renovate: datasource=github-releases packageName=NLnetLabs/unbound
+          - 1.24.0
     runs-on: ubuntu-latest
     env:
       REPOSITORY: ${{ github.repository }}
