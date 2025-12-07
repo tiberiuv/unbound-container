@@ -13,7 +13,7 @@ jobs:
       matrix:
         unbound_version: 
           # renovate: datasource=github-releases packageName=NLnetLabs/unbound
-          - 1.24.0
+          - 1.25.1
     runs-on: ubuntu-latest
     env:
       REPOSITORY: ${{ github.repository }}

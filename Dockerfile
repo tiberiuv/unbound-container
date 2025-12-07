@@ -1,5 +1,5 @@
 ARG ARCH=
-ARG UNBOUND_VERSION="1.24.0"
+ARG UNBOUND_VERSION="1.25.1"
 FROM ${ARCH}alpine AS build
 ARG PUID=1000
 ARG GUID=1001
@@ -11,6 +11,7 @@ RUN apk add -q --no-cache  \
     build-base \
     libressl-dev \
     libressl \
+    libressl-static \
     expat-static \
     expat-dev \
     libcap-static \
@@ -18,7 +19,10 @@ RUN apk add -q --no-cache  \
     bison \
     flex \
     hiredis-dev \
-    bind-tools
+    bind-tools \
+    libevent-dev \
+    libevent-static \
+    zlib-static
 
 WORKDIR /unbound_build
 
@@ -46,6 +50,8 @@ RUN ./configure \
     --with-rootkey-file=/etc/unbound/root.key \
     --with-run-dir=/var/run/unbound \
     --with-ssl \
+    --enable-rpz \
+    # --with-libevent \
     --enable-ipv6 \
     --enable-tfo-server \
     --enable-tfo-client \
